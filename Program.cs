@@ -11,6 +11,8 @@ namespace WFA220112
         public static string ConnectionString =>
             @"Data Source=(localdb)\MSSQLLocalDB;" +
             "Initial Catalog=utiroda;";
+        public static DateTime MaiDatum =>
+            new DateTime(2015, 10, 11);
 
         /// <summary>
         /// The main entry point for the application.

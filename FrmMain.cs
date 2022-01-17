@@ -13,31 +13,27 @@ namespace WFA220112
 {
     public partial class FrmMain : Form
     {
-        DateTime kamudatum = DateTime.Parse("2015-10-11");
         public FrmMain()
         {
             InitializeComponent();
+            Icon = Properties.Resources.logo;
         }
 
         private void FrmMain_Load(object sender, EventArgs e)
         {
-            this.Icon = Properties.Resources.logo;
+            lblDatum.Text = Program.MaiDatum.ToString("yyyy. MMMM dd.");
 
             using (var conn = new SqlConnection(Program.ConnectionString))
             {
                 conn.Open();
-
-                var sqlCommand = new SqlCommand(
+                var sqlReader = new SqlCommand(
                     "SELECT t_kod, hova, kezdet, vege, idegenvezeto.nev, szallas.nev, ar " +
                     "FROM tura " +
                     "INNER JOIN idegenvezeto ON vezeto = i_kod " +
                     "INNER JOIN utvonal ON utvonal = ut_kod " +
                     "INNER JOIN szallas ON szallas = sz_kod " +
-                    $"WHERE kezdet >= '{kamudatum.ToString("yyyy-MM-01")}';", conn);
-                    // $"WHERE kezdet >= '{DateTime.Now.ToString("yyyy-MM") + "-01"}';", conn);
-
-                var sqlReader = sqlCommand.ExecuteReader();
-
+                    $"WHERE kezdet >= '{Program.MaiDatum.ToString("yyyy-MM-01")}';",
+                    conn).ExecuteReader();
                 while (sqlReader.Read())
                 {
                     dgvMain.Rows.Add(
@@ -51,5 +47,11 @@ namespace WFA220112
                 }
             }
         }
+
+        private void TsmiSzerkesztes_Click(object sender, EventArgs e)
+            => new FrmUtasa().ShowDialog();
+
+        private void tsmiKereses_Click(object sender, EventArgs e)
+            => new FrmUtasLista(null).ShowDialog();
     }
 }

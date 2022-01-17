@@ -28,14 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.msMain = new System.Windows.Forms.MenuStrip();
+            this.tsmiUtas = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiSzerkesztes = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiKereses = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiIdegenvezeto = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiSzallas = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiUtvonal = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiTura = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
             this.dgvMain = new System.Windows.Forms.DataGridView();
-            this.utasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.idegenvezetőToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.szállásToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.útvonalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.túraToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -44,26 +46,86 @@
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblDatum = new System.Windows.Forms.Label();
-            this.tsmiSzerkesztes = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiKereses = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuStrip1.SuspendLayout();
+            this.msMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMain)).BeginInit();
             this.SuspendLayout();
             // 
-            // menuStrip1
+            // msMain
             // 
-            this.menuStrip1.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.utasToolStripMenuItem,
-            this.idegenvezetőToolStripMenuItem,
-            this.szállásToolStripMenuItem,
-            this.útvonalToolStripMenuItem,
-            this.túraToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(924, 91);
-            this.menuStrip1.TabIndex = 0;
-            this.menuStrip1.Text = "menuStrip1";
+            this.msMain.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.msMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiUtas,
+            this.tsmiIdegenvezeto,
+            this.tsmiSzallas,
+            this.tsmiUtvonal,
+            this.tsmiTura});
+            this.msMain.Location = new System.Drawing.Point(0, 0);
+            this.msMain.Name = "msMain";
+            this.msMain.Size = new System.Drawing.Size(924, 91);
+            this.msMain.TabIndex = 0;
+            this.msMain.Text = "menuStrip1";
+            // 
+            // tsmiUtas
+            // 
+            this.tsmiUtas.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiSzerkesztes,
+            this.tsmiKereses});
+            this.tsmiUtas.Image = global::WFA220112.Properties.Resources.utas1;
+            this.tsmiUtas.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsmiUtas.Name = "tsmiUtas";
+            this.tsmiUtas.Size = new System.Drawing.Size(76, 87);
+            this.tsmiUtas.Text = "Utas";
+            this.tsmiUtas.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            // 
+            // tsmiSzerkesztes
+            // 
+            this.tsmiSzerkesztes.Name = "tsmiSzerkesztes";
+            this.tsmiSzerkesztes.Size = new System.Drawing.Size(180, 24);
+            this.tsmiSzerkesztes.Text = "Szerkesztés";
+            this.tsmiSzerkesztes.Click += new System.EventHandler(this.TsmiSzerkesztes_Click);
+            // 
+            // tsmiKereses
+            // 
+            this.tsmiKereses.Name = "tsmiKereses";
+            this.tsmiKereses.Size = new System.Drawing.Size(180, 24);
+            this.tsmiKereses.Text = "Keresés";
+            this.tsmiKereses.Click += new System.EventHandler(this.tsmiKereses_Click);
+            // 
+            // tsmiIdegenvezeto
+            // 
+            this.tsmiIdegenvezeto.Image = global::WFA220112.Properties.Resources.idegenvezeto;
+            this.tsmiIdegenvezeto.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsmiIdegenvezeto.Name = "tsmiIdegenvezeto";
+            this.tsmiIdegenvezeto.Size = new System.Drawing.Size(103, 87);
+            this.tsmiIdegenvezeto.Text = "Idegenvezető";
+            this.tsmiIdegenvezeto.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            // 
+            // tsmiSzallas
+            // 
+            this.tsmiSzallas.Image = global::WFA220112.Properties.Resources.szallas;
+            this.tsmiSzallas.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsmiSzallas.Name = "tsmiSzallas";
+            this.tsmiSzallas.Size = new System.Drawing.Size(76, 87);
+            this.tsmiSzallas.Text = "Szállás";
+            this.tsmiSzallas.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            // 
+            // tsmiUtvonal
+            // 
+            this.tsmiUtvonal.Image = global::WFA220112.Properties.Resources.utvonal;
+            this.tsmiUtvonal.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsmiUtvonal.Name = "tsmiUtvonal";
+            this.tsmiUtvonal.Size = new System.Drawing.Size(76, 87);
+            this.tsmiUtvonal.Text = "Útvonal";
+            this.tsmiUtvonal.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            // 
+            // tsmiTura
+            // 
+            this.tsmiTura.Image = global::WFA220112.Properties.Resources.tura;
+            this.tsmiTura.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsmiTura.Name = "tsmiTura";
+            this.tsmiTura.Size = new System.Drawing.Size(76, 87);
+            this.tsmiTura.Text = "Túra";
+            this.tsmiTura.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
             // label1
             // 
@@ -96,54 +158,6 @@
             this.dgvMain.Name = "dgvMain";
             this.dgvMain.Size = new System.Drawing.Size(900, 293);
             this.dgvMain.TabIndex = 2;
-            // 
-            // utasToolStripMenuItem
-            // 
-            this.utasToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmiSzerkesztes,
-            this.tsmiKereses});
-            this.utasToolStripMenuItem.Image = global::WFA220112.Properties.Resources.utas1;
-            this.utasToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.utasToolStripMenuItem.Name = "utasToolStripMenuItem";
-            this.utasToolStripMenuItem.Size = new System.Drawing.Size(76, 87);
-            this.utasToolStripMenuItem.Text = "Utas";
-            this.utasToolStripMenuItem.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            // 
-            // idegenvezetőToolStripMenuItem
-            // 
-            this.idegenvezetőToolStripMenuItem.Image = global::WFA220112.Properties.Resources.idegenvezeto;
-            this.idegenvezetőToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.idegenvezetőToolStripMenuItem.Name = "idegenvezetőToolStripMenuItem";
-            this.idegenvezetőToolStripMenuItem.Size = new System.Drawing.Size(103, 87);
-            this.idegenvezetőToolStripMenuItem.Text = "Idegenvezető";
-            this.idegenvezetőToolStripMenuItem.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            // 
-            // szállásToolStripMenuItem
-            // 
-            this.szállásToolStripMenuItem.Image = global::WFA220112.Properties.Resources.szallas;
-            this.szállásToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.szállásToolStripMenuItem.Name = "szállásToolStripMenuItem";
-            this.szállásToolStripMenuItem.Size = new System.Drawing.Size(76, 87);
-            this.szállásToolStripMenuItem.Text = "Szállás";
-            this.szállásToolStripMenuItem.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            // 
-            // útvonalToolStripMenuItem
-            // 
-            this.útvonalToolStripMenuItem.Image = global::WFA220112.Properties.Resources.utvonal;
-            this.útvonalToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.útvonalToolStripMenuItem.Name = "útvonalToolStripMenuItem";
-            this.útvonalToolStripMenuItem.Size = new System.Drawing.Size(76, 87);
-            this.útvonalToolStripMenuItem.Text = "Útvonal";
-            this.útvonalToolStripMenuItem.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            // 
-            // túraToolStripMenuItem
-            // 
-            this.túraToolStripMenuItem.Image = global::WFA220112.Properties.Resources.tura;
-            this.túraToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.túraToolStripMenuItem.Name = "túraToolStripMenuItem";
-            this.túraToolStripMenuItem.Size = new System.Drawing.Size(76, 87);
-            this.túraToolStripMenuItem.Text = "Túra";
-            this.túraToolStripMenuItem.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
             // Column1
             // 
@@ -190,18 +204,6 @@
             this.lblDatum.TabIndex = 1;
             this.lblDatum.Text = "###maidatum###";
             // 
-            // tsmiSzerkesztes
-            // 
-            this.tsmiSzerkesztes.Name = "tsmiSzerkesztes";
-            this.tsmiSzerkesztes.Size = new System.Drawing.Size(180, 24);
-            this.tsmiSzerkesztes.Text = "Szerkesztés";
-            // 
-            // tsmiKereses
-            // 
-            this.tsmiKereses.Name = "tsmiKereses";
-            this.tsmiKereses.Size = new System.Drawing.Size(180, 24);
-            this.tsmiKereses.Text = "Keresés";
-            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -210,15 +212,15 @@
             this.Controls.Add(this.dgvMain);
             this.Controls.Add(this.lblDatum);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.menuStrip1);
+            this.Controls.Add(this.msMain);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.MainMenuStrip = this.msMain;
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FrmMain";
-            this.Text = "Form1";
+            this.Text = "Napos Oldal Utazási Iroda";
             this.Load += new System.EventHandler(this.FrmMain_Load);
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
+            this.msMain.ResumeLayout(false);
+            this.msMain.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMain)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -227,14 +229,14 @@
 
         #endregion
 
-        private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem utasToolStripMenuItem;
+        private System.Windows.Forms.MenuStrip msMain;
+        private System.Windows.Forms.ToolStripMenuItem tsmiUtas;
         private System.Windows.Forms.ToolStripMenuItem tsmiSzerkesztes;
         private System.Windows.Forms.ToolStripMenuItem tsmiKereses;
-        private System.Windows.Forms.ToolStripMenuItem idegenvezetőToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem szállásToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem útvonalToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem túraToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tsmiIdegenvezeto;
+        private System.Windows.Forms.ToolStripMenuItem tsmiSzallas;
+        private System.Windows.Forms.ToolStripMenuItem tsmiUtvonal;
+        private System.Windows.Forms.ToolStripMenuItem tsmiTura;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView dgvMain;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
