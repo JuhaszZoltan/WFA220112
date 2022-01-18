@@ -58,18 +58,86 @@ namespace WFA220112
 
         private void TsmiMentes_Click(object sender, EventArgs e)
         {
-            //nev & cim notNull or empty exc
+            string errorMessage = string.Empty;
+            string jelentkezikString =
+                (string.IsNullOrWhiteSpace(cbJelentkezes.Text) ? "null" : cbJelentkezes.Text);
 
-            if (string.IsNullOrEmpty(tbUtasKod.Text))
+            if (string.IsNullOrWhiteSpace(tbNev.Text))
+                errorMessage += "A 'név' mező kitöltése kötelező!\n";
+            if (string.IsNullOrWhiteSpace(rtbCim.Text))
+                errorMessage += "A 'cím' mező kitöltése kötelező!\n";
+
+            if (!string.IsNullOrEmpty(errorMessage))
             {
-                //TODO:::
-                MessageBox.Show("INSERT");
-                //fill btUtasKod
+                MessageBox.Show(
+                    caption: "HIBA",
+                    text: errorMessage,
+                    icon: MessageBoxIcon.Error,
+                    buttons: MessageBoxButtons.OK);
             }
             else
             {
-                //TODO:::
-                MessageBox.Show("UPDATE");
+                if (string.IsNullOrEmpty(tbUtasKod.Text))
+                {
+                    using (var conn = new SqlConnection(Program.ConnectionString))
+                    {
+                        conn.Open();
+
+                        var sqlReader = new SqlCommand(
+                            "SELECT MAX(u_kod) + 1 FROM utas;",
+                            conn).ExecuteReader();
+                        sqlReader.Read();
+                        var nextUKod = sqlReader[0];
+                        sqlReader.Close();
+
+                        var sqlAdapter = new SqlDataAdapter()
+                        {
+                            InsertCommand = new SqlCommand(
+                                $"INSERT INTO utas VALUES " +
+                                $"({nextUKod}, '{tbNev.Text}', '{rtbCim.Text}', " +
+                                $"{jelentkezikString});", conn),
+                        };
+
+                        try
+                        {
+                            sqlAdapter.InsertCommand.ExecuteNonQuery();
+                            tbUtasKod.Text = $"{nextUKod}";
+                            MessageBox.Show("Az új adat rögzítése megtörtént!");
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.Message);
+                        }
+                    }
+                    
+                }
+                else
+                {
+                    using (var conn = new SqlConnection(Program.ConnectionString))
+                    {
+                        conn.Open();
+
+                        var sqlAdapter = new SqlDataAdapter()
+                        {
+                            UpdateCommand = new SqlCommand(
+                                "UPDATE utas SET " +
+                                $"nev = '{tbNev.Text}', " +
+                                $"cim = '{rtbCim.Text}', " +
+                                $"jelentkezik = {jelentkezikString} " +
+                                $"WHERE u_kod = {tbUtasKod.Text};", conn),
+                        };
+
+                        try
+                        {
+                            sqlAdapter.UpdateCommand.ExecuteNonQuery();
+                            MessageBox.Show("Az adatok frissítése megtörtént!");
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.Message);
+                        }
+                    }
+                }
             }
         }
 
@@ -81,9 +149,27 @@ namespace WFA220112
                 buttons: MessageBoxButtons.YesNo,
                 icon: MessageBoxIcon.Warning) == DialogResult.Yes)
             {
-                //TODO:::
-                MessageBox.Show("DELETE");
-                UresUrlap();
+                using (var conn = new SqlConnection(Program.ConnectionString))
+                {
+                    conn.Open();
+                    var sqlAdapter = new SqlDataAdapter()
+                    {
+                        DeleteCommand = new SqlCommand(
+                            "DELETE FROM utas " +
+                            $"WHERE u_kod = {tbUtasKod.Text};", conn),
+                    };
+
+                    try
+                    {
+                        sqlAdapter.DeleteCommand.ExecuteNonQuery();
+                        MessageBox.Show("rekord sikeresen törölve!");
+                        UresUrlap();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                }
             }
         }
 
